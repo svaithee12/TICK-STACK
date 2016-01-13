@@ -1,0 +1,17 @@
+Telegraf :
+  wget https://s3.amazonaws.com/influxdb/influxdb-0.9.6.1-1.x86_64.rpm
+  sudo yum localinstall influxdb-0.9.6.1-1.x86_64.rpm
+
+
+InfluxDB :
+  wget https://s3.amazonaws.com/influxdb/influxdb-0.9.6.1-1.x86_64.rpm
+  sudo yum localinstall influxdb-0.9.6.1-1.x86_64.rpm
+  
+Chronograf :
+  wget https://s3.amazonaws.com/get.influxdb.org/chronograf/chronograf-0.4.0-1.x86_64.rpm
+  sudo yum localinstall chronograf-0.4.0-1.x86_64.rpm
+  
+Kapacitor :
+  wget https://s3.amazonaws.com/influxdb/kapacitor-0.2.4-1.x86_64.rpm
+  sudo yum localinstall kapacitor-0.2.4-1.x86_64.rpm
+
