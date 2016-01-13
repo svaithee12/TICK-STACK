@@ -1,0 +1,23 @@
+var disk_free= stream
+                   .from().measurement('disk_free')
+                   .where(lambda: "fstype" == 'ext4')
+                   .eval(lambda: float("value") * 1.0)
+                        .as('value')
+
+
+var disk_total = stream
+                   .from().measurement('disk_total')
+                   .where(lambda: "fstype" == 'ext4')
+                    .eval(lambda: float("value"))
+                        .as('value')
+
+
+
+disk_free.join(disk_total)
+        .as('disk_free', 'disk_total')
+
+        .eval(lambda: ("disk_free.value" * 100.0) / "disk_total.value")
+            .as('value')
+        .influxDBOut()
+            .database('telegraf')
+            .measurement('disk_free_percent')
