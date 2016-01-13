@@ -1,0 +1,31 @@
+InfluxDB ( first because it has to receive data from telegraf )
+    sudo service influxdb start
+    runs at ports : 8086 (the listening port)
+                    8083 (the admin console GUI)
+                    8088 
+
+Telegraf
+    modify the telegraf conf file at /etc/telegraf/telegraf.conf
+    and then sudo service telegraf start
+
+Chronograf 
+    sudo service chronograf start
+    runs at ports : 10000 ( web GUI)
+    
+Kapacitor 
+    start the kapacitor daemon by
+        kapacitord -config kapacitor.conf &
+        
+    defining tick-scripts : 
+        kapacitor define     -name name_to_refer_the_script      -type stream     -dbrp telegraf.default     -tick ./filename.tick
+        eg :
+         kapacitor define     -name disk_free_percent     -type stream     -dbrp telegraf.default     -tick ./disk_free_percent.tick 
+
+    enabling tick script : 
+        kapacitor enable name_to_refer_the_script
+        eg :
+        kapacitor enable disk_free_percent
+    
+    
+    
+
