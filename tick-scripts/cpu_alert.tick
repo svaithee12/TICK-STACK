@@ -1,0 +1,22 @@
+stream
+    .from().measurement('cpu_usage_idle')
+        .alert()
+                .message('MAYDAY-TESTING IGNORE')
+                .crit(lambda: "value" < 50)
+                .log('/tmp/alerts.log')
+                .stateChangesOnly()
+                .flapping( 0.25,  0.5)
+                .victorOps()
+                        .routingKey('everyone')
+
+
+
+
+
+
+
+
+
+
+
+
